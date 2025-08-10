@@ -114,8 +114,13 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <flux:checkbox wire:model="remember" :label="__('Remember me')" />
 
         <div class="flex items-center justify-end gap-2">
+
             <flux:button variant="primary" type="submit" class="w-full">{{ __('Log in') }}</flux:button>
-            <script async src="https://telegram.org/js/telegram-widget.js?19"
+            @php
+                $cacheBuster = uniqid();
+            @endphp
+
+            <script async src="https://telegram.org/js/telegram-widget.js?{{ $cacheBuster }}"
                     data-telegram-login="my_new_socialite_telegram_bot"
                     data-size="large"
                     data-auth-url="{{ url('/auth/telegram/callback') }}"

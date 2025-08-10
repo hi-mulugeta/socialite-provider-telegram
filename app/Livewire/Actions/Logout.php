@@ -5,6 +5,8 @@ namespace App\Livewire\Actions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
+
+
 class Logout
 {
     /**
@@ -13,9 +15,11 @@ class Logout
     public function __invoke()
     {
         Auth::guard('web')->logout();
-
+        Session::flush(); // Clears all session data
         Session::invalidate();
         Session::regenerateToken();
+
+
 
         return redirect('/');
     }
