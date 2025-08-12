@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/auth/telegram/redirect',function (){
     return Socialite::driver('telegram')->redirect();
 });
-Route::get('/auth/telegram/callback', function () {
+Route::get('/auth/telegram/callback/', function () {
     $telegramUser = Socialite::driver('telegram')->stateless()->user();
 
     $avatarUrl = $telegramUser->user['photo_url'] ?? null;
